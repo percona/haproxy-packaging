@@ -1,0 +1,42 @@
+From: Apollon Oikonomopoulos <apoikos@gmail.com>
+Date: Tue, 2 Jul 2013 15:24:59 +0300
+Subject: Use dpkg-buildflags to build halog
+
+Forwarded: no
+Last-Update: 2013-07-02
+---
+ contrib/halog/Makefile | 16 +++++-----------
+ 1 file changed, 5 insertions(+), 11 deletions(-)
+
+diff --git a/contrib/halog/Makefile b/contrib/halog/Makefile
+index 5e687c0..ab34027 100644
+--- a/contrib/halog/Makefile
++++ b/contrib/halog/Makefile
+@@ -1,22 +1,16 @@
+ EBTREE_DIR = ../../ebtree
+ INCLUDE  = -I../../include -I$(EBTREE_DIR)
+ 
+-CC       = gcc
+-
+-# note: it is recommended to also add -fomit-frame-pointer on i386
+-OPTIMIZE = -O3
++CPPFLAGS:=$(shell dpkg-buildflags --get CPPFLAGS)
++CFLAGS:=$(shell dpkg-buildflags --get CFLAGS)
++LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
+ 
+-# most recent glibc provide platform-specific optimizations that make
+-# memchr faster than the generic C implementation (eg: SSE and prefetch
+-# on x86_64). Try with an without. In general, on x86_64 it's better to
+-# use memchr using the define below.
+-# DEFINE   = -DUSE_MEMCHR
+-DEFINE   =
++CC       = gcc
+ 
+ OBJS     = halog
+ 
+ halog: halog.c fgets2.c
+-	$(CC) $(OPTIMIZE) $(DEFINE) -o $@ $(INCLUDE) $(EBTREE_DIR)/ebtree.c $(EBTREE_DIR)/eb32tree.c $(EBTREE_DIR)/eb64tree.c $(EBTREE_DIR)/ebmbtree.c $(EBTREE_DIR)/ebsttree.c $(EBTREE_DIR)/ebistree.c $(EBTREE_DIR)/ebimtree.c $^
++	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@ $(INCLUDE) $(EBTREE_DIR)/ebtree.c $(EBTREE_DIR)/eb32tree.c $(EBTREE_DIR)/eb64tree.c $(EBTREE_DIR)/ebmbtree.c $(EBTREE_DIR)/ebsttree.c $(EBTREE_DIR)/ebistree.c $(EBTREE_DIR)/ebimtree.c $^
+ 
+ clean:
+ 	rm -f $(OBJS) *.[oas]
