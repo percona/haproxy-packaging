@@ -20,8 +20,8 @@ index 74e66e3..243acf2 100644
 @@ -1,6 +1,6 @@
  [Unit]
  Description=HAProxy Load Balancer
--After=network.target
-+After=network.target rsyslog.service
+-After=network-online.target
++After=network-online.target rsyslog.service
+ Wants=network-online.target
  
  [Service]
- EnvironmentFile=-/etc/default/haproxy
