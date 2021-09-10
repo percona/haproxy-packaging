@@ -88,7 +88,7 @@ get_sources(){
     echo "VERSION=${VERSION}" >> haproxy.properties
     echo "BUILD_NUMBER=${BUILD_NUMBER}" >> haproxy.properties
     echo "BUILD_ID=${BUILD_ID}" >> haproxy.properties
-    git clone https://github.com/vorsel/haproxy-packaging.git
+    git clone https://github.com/EvgeniyPatlan/haproxy-packaging.git
     git clone "$REPO" ${PRODUCT_FULL}
     retval=$?
     if [ $retval != 0 ]
