@@ -59,13 +59,9 @@ regparm_opts="USE_REGPARM=1"
 
 %{__make} %{?_smp_mflags} CPU="generic" TARGET="linux-glibc" USE_OPENSSL=1 USE_PCRE2=1 USE_ZLIB=1 USE_LUA=1 USE_CRYPT_H=1 USE_SYSTEMD=1 USE_LINUX_TPROXY=1 USE_GETADDRINFO=1 ${regparm_opts} ADDINC="%{optflags}" ADDLIB="%{__global_ldflags}" USE_PROMEX=1
 
-pushd admin/halog
-%{__make} ${halog} OPTIMIZE="%{optflags}"
-popd
+%{__make} admin/halog/halog OPTIMIZE="%{optflags}"
 
-pushd admin/iprange
-%{__make} iprange OPTIMIZE="%{optflags}"
-popd
+%{__make} admin/iprange/iprange OPTIMIZE="%{optflags}"
 
 %install
 %{__make} install-bin DESTDIR=%{buildroot} PREFIX=%{_prefix} TARGET="linux2628"
