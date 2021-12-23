@@ -18,8 +18,8 @@ MAKEARGS=V=1 \
 	 USE_OPENSSL=1 \
 	 USE_ZLIB=1 \
 	 USE_LUA=1 \
-	 LUA_INC=/usr/include/lua5.3 \
-	 EXTRA_OBJS="contrib/prometheus-exporter/service-prometheus.o"
+	 USE_PROMEX=1 \
+	 LUA_INC=/usr/include/lua5.3
 
 ifeq ($(DEB_HOST_ARCH_OS),linux)
         MAKEARGS+= TARGET=linux-glibc USE_SYSTEMD=1
