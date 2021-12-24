@@ -52,7 +52,7 @@ override_dh_auto_configure:
 
 override_dh_auto_build-arch:
 	make $(MAKEARGS)
-	make -C contrib/systemd $(MAKEARGS)
+	make -C admin/systemd $(MAKEARGS)
 	dh_auto_build -Dadmin/halog
 	$(MAKE) -C doc/lua-api man
 
@@ -68,7 +68,7 @@ override_dh_auto_build-indep:
 	$(MAKE) -C doc/lua-api html
 
 override_dh_auto_clean:
-	make -C contrib/systemd clean
+	make -C admin/systemd clean
 	$(MAKE) -C doc/lua-api clean
 	dh_auto_clean
 	dh_auto_clean -Dadmin/halog
