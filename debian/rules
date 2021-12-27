@@ -71,7 +71,6 @@ override_dh_auto_clean:
 	make -C admin/systemd clean
 	$(MAKE) -C doc/lua-api clean
 	dh_auto_clean
-	dh_auto_clean -Dadmin/halog
 
 override_dh_auto_install-arch:
 	make $(MAKEARGS) install
