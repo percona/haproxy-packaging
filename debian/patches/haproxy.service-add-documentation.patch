@@ -6,13 +6,13 @@ Subject: Add documentation field to the systemd unit
 Forwarded: no
 Last-Update: 2014-01-03
 ---
- contrib/systemd/haproxy.service.in | 2 ++
+ admin/systemd/haproxy.service.in | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/contrib/systemd/haproxy.service.in b/contrib/systemd/haproxy.service.in
+diff --git a/admin/systemd/haproxy.service.in b/admin/systemd/haproxy.service.in
 index 243acf2..ac88c37 100644
---- a/contrib/systemd/haproxy.service.in
-+++ b/contrib/systemd/haproxy.service.in
+--- a/admin/systemd/haproxy.service.in
++++ b/admin/systemd/haproxy.service.in
 @@ -1,5 +1,7 @@
  [Unit]
  Description=HAProxy Load Balancer

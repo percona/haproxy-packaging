@@ -5,5 +5,5 @@ doc/lua.txt
 doc/management.txt
 doc/network-namespaces.txt
 doc/SPOE.txt
-contrib
+admin
 README
