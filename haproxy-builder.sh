@@ -88,10 +88,7 @@ get_sources(){
     echo "VERSION=${VERSION}" >> haproxy.properties
     echo "BUILD_NUMBER=${BUILD_NUMBER}" >> haproxy.properties
     echo "BUILD_ID=${BUILD_ID}" >> haproxy.properties
-    git clone https://github.com/adivinho/haproxy-packaging.git
-    cd haproxy-packaging
-    git checkout DISTMYSQL-143-HAProxy-2.4.9-packages
-    cd ..
+    git clone https://github.com/percona/haproxy-packaging.git
     git clone "$REPO" ${PRODUCT_FULL}
     retval=$?
     if [ $retval != 0 ]
