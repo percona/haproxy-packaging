@@ -88,7 +88,7 @@ get_sources(){
     echo "VERSION=${VERSION}" >> haproxy.properties
     echo "BUILD_NUMBER=${BUILD_NUMBER}" >> haproxy.properties
     echo "BUILD_ID=${BUILD_ID}" >> haproxy.properties
-    git clone https://github.com/percona/haproxy-packaging.git
+    git clone https://github.com/vorsel/haproxy-packaging.git
     git clone "$REPO" ${PRODUCT_FULL}
     retval=$?
     if [ $retval != 0 ]
@@ -406,12 +406,12 @@ INSTALL=0
 RPM_RELEASE=1
 DEB_RELEASE=1
 REVISION=0
-BRANCH="v2.4.9"
+BRANCH="v2.4.15"
 REPO="http://git.haproxy.org/git/haproxy-2.4.git/"
 PRODUCT=percona-haproxy
 DEBUG=0
 parse_arguments PICK-ARGS-FROM-ARGV "$@"
-VERSION='2.4.9'
+VERSION='2.4.15'
 RELEASE='1'
 PRODUCT_FULL=${PRODUCT}-${VERSION}-${RELEASE}
 
