@@ -13,7 +13,7 @@ Comment:
 
 Files: ebtree/*
        include/*
-       contrib/halog/fgets2.c
+       admin/halog/fgets2.c
 Copyright: Copyright 2000-2013 Willy Tarreau - w@1wt.eu
 License: LGPL-2.1
 
@@ -119,8 +119,8 @@ Files: src/peers.c
 Copyright: Copyright (C) 2010-2012 EXCELIANCE, Emeric Brun <ebrun@exceliance.fr>
 License: GPL-2+
 
-Files: contrib/netsnmp-perl/haproxy.pl
-       contrib/base64/base64rev-gen.c
+Files: admin/netsnmp-perl/haproxy.pl
+       dev/base64/base64rev-gen.c
 Copyright: Copyright 2007-2010 Krzysztof Piotr Oledzki <ole@ans.pl>
 License: GPL-2+
 

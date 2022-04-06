@@ -10,18 +10,18 @@ rsyslog-specific.
 Forwarded: no
 Last-Update: 2017-12-01
 ---
- contrib/systemd/haproxy.service.in | 2 +-
+ admin/systemd/haproxy.service.in | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/contrib/systemd/haproxy.service.in b/contrib/systemd/haproxy.service.in
-index 74e66e3..243acf2 100644
---- a/contrib/systemd/haproxy.service.in
-+++ b/contrib/systemd/haproxy.service.in
+diff --git a/admin/systemd/haproxy.service.in b/admin/systemd/haproxy.service.in
+index 49d3c52cf..b93545585 100644
+--- a/admin/systemd/haproxy.service.in
++++ b/admin/systemd/haproxy.service.in
 @@ -1,6 +1,6 @@
  [Unit]
  Description=HAProxy Load Balancer
 -After=network-online.target
 +After=network-online.target rsyslog.service
  Wants=network-online.target
- 
+
  [Service]
