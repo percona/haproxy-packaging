@@ -133,6 +133,7 @@ get_system(){
     fi
     return
 }
+
 install_lua(){
     cd /tmp
     curl https://www.lua.org/ftp/lua-5.3.5.tar.gz > lua-5.3.5.tar.gz
@@ -147,6 +148,12 @@ install_lua(){
     cd $WORKDIR
     rm -rf /tmp/lua-5.3.5*
 }
+
+switch_to_vault_repo() {
+    sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+    sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+}
+
 install_deps() {
     if [ $INSTALL = 0 ]
     then
@@ -161,6 +168,9 @@ install_deps() {
     CURPLACE=$(pwd)
 
     if [ "x$OS" = "xrpm" ]; then
+        if [ x"$RHEL" = x8 ]; then
+            switch_to_vault_repo
+        fi
         yum -y install wget
         yum clean all
         RHEL=$(rpm --eval %rhel)
@@ -231,6 +241,9 @@ build_srpm(){
         echo "It is not possible to build src rpm here"
         exit 1
     fi
+    if [ x"$RHEL" = x8 ]; then
+        switch_to_vault_repo
+    fi
     cd $WORKDIR
     get_tar "source_tarball"
     rm -fr rpmbuild
@@ -265,6 +278,9 @@ build_rpm(){
     then
         echo "It is not possible to build rpm here"
         exit 1
+    fi
+    if [ x"$RHEL" = x8 ]; then
+        switch_to_vault_repo
     fi
     SRC_RPM=$(basename $(find $WORKDIR/srpm -name 'percona-haproxy*.src.rpm' | sort | tail -n1))
     if [ -z $SRC_RPM ]
@@ -406,12 +422,12 @@ INSTALL=0
 RPM_RELEASE=1
 DEB_RELEASE=1
 REVISION=0
-BRANCH="v2.4.9"
+BRANCH="v2.4.15"
 REPO="http://git.haproxy.org/git/haproxy-2.4.git/"
 PRODUCT=percona-haproxy
 DEBUG=0
 parse_arguments PICK-ARGS-FROM-ARGV "$@"
-VERSION='2.4.9'
+VERSION='2.4.15'
 RELEASE='1'
 PRODUCT_FULL=${PRODUCT}-${VERSION}-${RELEASE}
 
