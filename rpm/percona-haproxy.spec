@@ -7,7 +7,7 @@
 %global _hardened_build 1
 
 Name:           percona-haproxy
-Version:        2.4.15
+Version:        2.5.6
 Release:        1%{?dist}
 Summary:        HAProxy reverse proxy for high availability environments
 
@@ -130,5 +130,5 @@ exit 0
 %{_mandir}/man1/*
 
 %changelog
-* Wed Jun 17 2020 Evgeniy Patlan <evgeniy.patlan@percona.com> - 2.1.7-1
+* Fri May 13 2022 Evgeniy Patlan <evgeniy.patlan@percona.com> - 2.5.6-1
 - initial packaging
