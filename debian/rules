@@ -48,6 +48,9 @@ MAKEARGS += VERDATE="$(shell TZ=UTC date -d "@$(SOURCE_DATE_EPOCH)" "+%Y/%m/%d")
 %:
 	dh $@ --with sphinxdoc
 
+override_dh_builddeb:
+	dh_builddeb -- -Zgzip
+
 override_dh_auto_configure:
 
 override_dh_auto_build-arch:
