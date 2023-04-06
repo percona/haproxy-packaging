@@ -114,7 +114,7 @@ exit 0
 
 %files
 %doc doc/* examples/*
-%doc CHANGELOG README ROADMAP VERSION
+%doc CHANGELOG README VERSION
 %license LICENSE
 %dir %{haproxy_homedir}
 %dir %{haproxy_confdir}
