@@ -7,7 +7,7 @@
 %global _hardened_build 1
 
 Name:           percona-haproxy
-Version:        2.5.11
+Version:        2.6.12
 Release:        1%{?dist}
 Summary:        HAProxy reverse proxy for high availability environments
 
