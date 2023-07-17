@@ -422,12 +422,12 @@ INSTALL=0
 RPM_RELEASE=1
 DEB_RELEASE=1
 REVISION=0
-BRANCH="v2.6.13"
+BRANCH="v2.6.14"
 REPO="http://git.haproxy.org/git/haproxy-2.6.git/"
 PRODUCT=percona-haproxy
 DEBUG=0
 parse_arguments PICK-ARGS-FROM-ARGV "$@"
-VERSION='2.6.13'
+VERSION='2.6.14'
 RELEASE='1'
 PRODUCT_FULL=${PRODUCT}-${VERSION}-${RELEASE}
 
