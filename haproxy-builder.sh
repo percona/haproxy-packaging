@@ -17,6 +17,8 @@ Usage: $0 [OPTIONS]
         --install_deps      Install build dependencies(root privilages are required)
         --branch            Branch for build
         --repo              Repo for build
+        --build_branch      Branch for build packaging
+        --build_repo        Repo for build packaging
         --help) usage ;;
 Example $0 --builddir=/tmp/BUILD --get_sources=1 --build_src_rpm=1 --build_rpm=1
 EOF
@@ -46,6 +48,8 @@ parse_arguments() {
             --get_sources=*) SOURCE="$val" ;;
             --branch=*) BRANCH="$val" ;;
             --repo=*) REPO="$val" ;;
+            --build_branch=*) BUILD_BRANCH="$val" ;;
+            --build_repo=*) BUILD_REPO="$val" ;;
             --install_deps=*) INSTALL="$val" ;;
             --help) usage ;;
             *)
@@ -88,7 +92,14 @@ get_sources(){
     echo "VERSION=${VERSION}" >> haproxy.properties
     echo "BUILD_NUMBER=${BUILD_NUMBER}" >> haproxy.properties
     echo "BUILD_ID=${BUILD_ID}" >> haproxy.properties
-    git clone https://github.com/percona/haproxy-packaging.git
+    #git clone https://github.com/percona/haproxy-packaging.git
+    git clone ${BUILD_REPO}
+    cd haproxy-packaging
+    if [ ! -z "$BUILD_BRANCH" ]
+    then
+        git checkout ${BUILD_BRANCH}
+    fi
+    cd ..
     git clone "$REPO" ${PRODUCT_FULL}
     retval=$?
     if [ $retval != 0 ]
@@ -422,12 +433,12 @@ INSTALL=0
 RPM_RELEASE=1
 DEB_RELEASE=1
 REVISION=0
-BRANCH="v2.6.13"
+BRANCH="v2.6.14"
 REPO="http://git.haproxy.org/git/haproxy-2.6.git/"
 PRODUCT=percona-haproxy
 DEBUG=0
 parse_arguments PICK-ARGS-FROM-ARGV "$@"
-VERSION='2.6.13'
+VERSION='2.6.14'
 RELEASE='1'
 PRODUCT_FULL=${PRODUCT}-${VERSION}-${RELEASE}
 
