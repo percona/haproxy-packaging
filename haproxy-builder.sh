@@ -99,6 +99,7 @@ get_sources(){
     then
         git checkout ${BUILD_BRANCH}
     fi
+    sed -i s/@@VERSION@@/${VERSION}/ rpm/percona-haproxy.spec
     cd ..
     git clone "$REPO" ${PRODUCT_FULL}
     retval=$?
