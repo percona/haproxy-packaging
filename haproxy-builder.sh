@@ -194,7 +194,7 @@ install_deps() {
         export DEBIAN=$(lsb_release -sc)
         export ARCH=$(echo $(uname -m) | sed -e 's:i686:i386:g')
         apt-get update || true
-        INSTALL_LIST="vim wget curl git debconf debhelper devscripts dh-exec dh-systemd libpcre2-dev libssl-dev liblua5.3-dev libsystemd-dev python3-sphinx zlib1g-dev python3-mako"
+        INSTALL_LIST="vim wget curl git debconf debhelper devscripts dh-exec libpcre2-dev libssl-dev liblua5.3-dev libsystemd-dev python3-sphinx zlib1g-dev python3-mako"
         DEBIAN_FRONTEND=noninteractive apt-get -y install ${INSTALL_LIST}
         if [ "x${DEBIAN}" = "xxenial" ]; then
             DEBIAN_FRONTEND=noninteractive apt-get -y install dh-autoreconf=12~ubuntu16.04.1 debhelper=10.2.2ubuntu1~ubuntu16.04.1
@@ -434,6 +434,7 @@ INSTALL=0
 RPM_RELEASE=1
 DEB_RELEASE=1
 REVISION=0
+BUILD_REPO=https://github.com/percona/haproxy-packaging.git
 BRANCH="v2.6.14"
 REPO="http://git.haproxy.org/git/haproxy-2.6.git/"
 PRODUCT=percona-haproxy
