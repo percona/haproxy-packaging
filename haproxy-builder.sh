@@ -199,7 +199,7 @@ install_deps() {
         export DEBIAN=$(lsb_release -sc)
         export ARCH=$(echo $(uname -m) | sed -e 's:i686:i386:g')
         apt-get update || true
-        INSTALL_LIST="vim wget curl git debconf debhelper devscripts dh-exec libpcre2-dev libssl-dev liblua5.3-dev libsystemd-dev python3-sphinx zlib1g-dev python3-mako"
+        INSTALL_LIST="vim wget curl git debconf debhelper devscripts dh-exec libpcre2-dev libssl-dev liblua5.3-dev libsystemd-dev python3-sphinx zlib1g-dev python3-mako libcrypt-dev"
         DEBIAN_FRONTEND=noninteractive apt-get -y install ${INSTALL_LIST}
         if [ "x${DEBIAN}" = "xxenial" ]; then
             DEBIAN_FRONTEND=noninteractive apt-get -y install dh-autoreconf=12~ubuntu16.04.1 debhelper=10.2.2ubuntu1~ubuntu16.04.1
