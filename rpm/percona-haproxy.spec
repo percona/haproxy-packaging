@@ -64,6 +64,11 @@ regparm_opts="USE_REGPARM=1"
 %{__make} admin/iprange/iprange OPTIMIZE="%{optflags}"
 
 %install
+# Newer haproxy releases (e.g. 3.4.x) dropped the top-level README file from
+# the source tree. Create an empty placeholder when it's missing so the
+# %%doc line below (kept identical across branches) doesn't fail the build.
+[ -f README ] || : > README
+
 %{__make} install-bin DESTDIR=%{buildroot} PREFIX=%{_prefix} TARGET="linux2628"
 %{__make} install-man DESTDIR=%{buildroot} PREFIX=%{_prefix}
 
