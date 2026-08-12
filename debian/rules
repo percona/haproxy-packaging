@@ -83,6 +83,14 @@ override_dh_auto_install-arch:
 override_dh_auto_install-indep:
 
 override_dh_installdocs:
+	set -e; \
+	> debian/percona-haproxy.docs.tmp; \
+	while read -r f; do \
+		if [ -z "$$f" ] || [ -e "$$f" ]; then \
+			echo "$$f" >> debian/percona-haproxy.docs.tmp; \
+		fi; \
+	done < debian/percona-haproxy.docs; \
+	mv debian/percona-haproxy.docs.tmp debian/percona-haproxy.docs
 	dh_installdocs -Xsystemd/ -Xhalog/
 
 override_dh_installexamples:
