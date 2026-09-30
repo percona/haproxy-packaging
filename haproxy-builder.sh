@@ -198,6 +198,15 @@ install_deps() {
     else
         export DEBIAN=$(lsb_release -sc)
         export ARCH=$(echo $(uname -m) | sed -e 's:i686:i386:g')
+        export OS_NAME="$(. /etc/os-release && echo "$VERSION_CODENAME")"
+        if [ "${OS_NAME}" == "bullseye" ]; then
+           sed -i -E '/bullseye(-security|-updates)?[[:space:]]/d' /etc/apt/sources.list
+cat <<'EOF' | tee -a /etc/apt/sources.list
+deb [check-valid-until=no] http://snapshot.debian.org/archive/debian/20260830T000000Z/ bullseye main
+deb [check-valid-until=no] http://snapshot.debian.org/archive/debian/20260830T000000Z/ bullseye-updates main
+deb [check-valid-until=no] http://snapshot.debian.org/archive/debian-security/20260830T000000Z/ bullseye-security main
+EOF
+        fi
         apt-get update || true
         INSTALL_LIST="vim wget curl git debconf debhelper devscripts dh-exec libpcre2-dev libssl-dev liblua5.3-dev libsystemd-dev python3-sphinx zlib1g-dev python3-mako libcrypt-dev"
         DEBIAN_FRONTEND=noninteractive apt-get -y install ${INSTALL_LIST}
